@@ -8,3 +8,8 @@ def printOptions(list, menuName = 'Main'):
     for option in list:
         print(f"\t{number} {optionSeparator} {option}")
         number += 1
+
+def detectMenu(menus, id):
+    for menu in menus:
+        if menu[-1] == id:
+            return menu
