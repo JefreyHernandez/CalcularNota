@@ -1,17 +1,26 @@
-import menuFunctions as mF
+import sys
+import menuFunctions
+import notesFunctions
+import menus
 
-#The last digit of the menus, is the ID of the menu, its equal to the choosen number
+user_selections = []
+menuPosition = 0
 
-mainMenu = ('UF', 'Modulo', 'Total', 'Salir', 0)
-moduloMenu = ('M01 [Sistemas]', 'M02 [BBDD]', 'M03 [Programación]', 'M04 [Marcas]', 'M05 [Maquinas]', 'M07 [Redes]', 'M12 [FOL]', 'M13 [EIE]', 'Salir', 2)
-ufMenu = (moduloMenu[:-1], 1)
-menus = (mainMenu, moduloMenu, ufMenu)
+while 0 <= menuPosition < 3:
+    optionSelected = menuFunctions.spawnMenu(menuPosition, menus.titles[menuPosition])
+    if optionSelected == len(menus.menus[menuPosition]):
+        try:
+            user_selections.pop()
+            menuPosition -= 1
+        except:
+            sys.exit(0)
+    else:
+        user_selections.append(optionSelected)
+        menuPosition += 1
 
-mF.printOptions(mainMenu[:-1])
-choosen = int(input("\nOption? : "))
-menuChoosen = mF.detectMenu(menus, choosen)
-while 1 <= choosen <= len(menuChoosen[:-1]):
-    mF.printOptions(menuChoosen[:-1], mainMenu[choosen - 1])
-    choosen = int(input("\nOption? : "))
-    if choosen == len(menuChoosen[:-1]):
-        menuChoosen = mainMenu
+calcOption, signatureOption = notesFunctions.optionSelection(user_selections)
+print(calcOption)
+print(signatureOption)
+
+
+
