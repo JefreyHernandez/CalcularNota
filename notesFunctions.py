@@ -1,27 +1,77 @@
+# Los porcentajes estan puestos directamente para operar
+# EJ : 0.1 = 10%
+
 import menus
+import sys
 def optionSelection(userInputList):
     calculateName = menus.calculateMenu[userInputList[1] - 1]
     signatureName = menus.signaturas[userInputList[2] - 1]
     return calculateName, signatureName
+def printPermitedNotes():
+    print('El resultado no esta entre las notas permitidas [0 - 10]')
 
-def calcUF1M01():
-    notesRA1 = []
-    notesRA2 = []
-    NPRACTISES = 7
-    PERCENTPPRA1 = 0.1
-    PERCENTPPRA2 = 0.25
-    for Nnote in range(1, NPRACTISES + 1):
-        pp = float(input(f'Nota PP{Nnote}? : '))
-        if Nnote < 5:
-            notesRA1.append(pp * PERCENTPPRA1)
+def getUFNotes(NUFS):
+    UFNotesList = []
+    for UF in range(NUFS):
+        note = int(input(f'Nota de la UF{UF} : '))
+        if 0 <= note <= 10:
+            UFNotesList.append(note)
         else:
-            notesRA2.append(pp * PERCENTPPRA2)
-    test = float(input('Nota del test UF1? : '))
-    RA1 = (sum(notesRA1) + (test * 0.5)) * 0.5
-    RA2 = (sum(notesRA2) + (test * 0.5)) * 0.5
+            printPermitedNotes()
+            sys.exit(1)
+    return UFNotesList
 
-    total = round(RA1 + RA2, 2)
-    print(total)
-    return total
+def insertPP(NPPs):
+    ppList = []
+    for Npp in range(1, NPPs + 1):
+        try:
+            pp = float(input(f'Nota PP{Npp}? : '))
+            if 0 <= pp <= 10:
+                ppList.append(pp)
+            else:
+                sys.exit(1)
+        except ValueError as pptype2:
+            try:
+                pp = str(pptype2).split("'")
+                pp = pp[1].split("/")
+                divisor = int(pp[0])
+                divident = int(pp[1])
+                pp = divisor / divident * 10
+                if 0 <= pp <= 10:
+                    ppList.append(pp)
+                else:
+                    printPermitedNotes()
+                    sys.exit(1)
+            except:
+                sys.exit(1)
+    return ppList
 
-calcUF1M01()
+def insertTEST(NTests):
+    testList = []
+    for Ntest in range(1, NTests + 1):
+        try:
+            pp = float(input(f'Nota test {Ntest} UF2? : '))
+            testList.append(pp)
+        except ValueError as testtype2:
+            try:
+                test = str(testtype2).split("'")
+                test = test[1].split("/")
+                divisor = int(test[0])
+                divident = int(test[1])
+                test = divisor / divident * 10
+                if 0 <= test <= 10:
+                    testList.append(test)
+                else:
+                    printPermitedNotes()
+                    sys.exit(1)
+            except:
+                sys.exit(1)
+    return testList
+
+def detectLessnote(noteList, minimumNote):
+    for note in noteList:
+        if note < minimumNote:
+            return True
+    return False
+
+
