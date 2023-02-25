@@ -9,7 +9,6 @@ def optionSelection(userInputList):
     return calculateName, signatureName
 def printPermitedNotes():
     print('El resultado no esta entre las notas permitidas [0 - 10]')
-
 def getUFNotes(NUFS):
     UFNotesList = []
     for UF in range(NUFS):
@@ -20,7 +19,6 @@ def getUFNotes(NUFS):
             printPermitedNotes()
             sys.exit(1)
     return UFNotesList
-
 def insertPP(NPPs):
     ppList = []
     for Npp in range(1, NPPs + 1):
@@ -45,7 +43,6 @@ def insertPP(NPPs):
             except:
                 sys.exit(1)
     return ppList
-
 def insertTEST(NTests):
     testList = []
     for Ntest in range(1, NTests + 1):
@@ -67,7 +64,6 @@ def insertTEST(NTests):
             except:
                 sys.exit(1)
     return testList
-
 def detectLessnote(noteList, minimumNote):
     for note in noteList:
         if note < minimumNote:
