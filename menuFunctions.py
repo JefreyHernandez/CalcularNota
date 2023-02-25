@@ -1,15 +1,9 @@
-def printOptions(list, menuName = 'Main'):
-    TIMES = 30
-    number = 1
-    optionSeparator = '·'
-    menubarSeparator = "-"
-
-    print(f'\n{menuName.center(TIMES, menubarSeparator)}')
-    for option in list:
-        print(f"\t{number} {optionSeparator} {option}")
-        number += 1
-
-def detectMenu(menus, id):
-    for menu in menus:
-        if menu[-1] == id:
-            return menu
+import menus
+def spawnMenu(position, title = 'Main'):
+    quantity = 30
+    print(title.center(quantity, '-'))
+    counter = 1
+    for option in menus.menus[position]:
+        print(f'{counter} {"·"} {option}')
+        counter += 1
+    return int(input(f'\nOpción? : '))
