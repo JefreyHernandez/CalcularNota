@@ -29,7 +29,6 @@ def calcUF1M01():
     lessnote = lessnotepp or lessnotetest
 
     return total, lessnote
-
 def calcUF2M01():
     NRA1PRACTISES = 5
     NRA2PRACTISES = 2
@@ -63,8 +62,6 @@ def calcUF2M01():
     lessnote = lessnotepp or lessnotetest
 
     return total, lessnote
-
-
 def calcM01():
     PERCENTUF1 = 0.3
     PERCENTUF2 = 0.4
