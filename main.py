@@ -6,7 +6,7 @@ import menus
 user_selections = []
 menuPosition = 0
 
-while 0 <= menuPosition < 3:
+while 0 <= menuPosition < len(menus.menus):
     optionSelected = menuFunctions.spawnMenu(menuPosition, menus.titles[menuPosition])
     if optionSelected == len(menus.menus[menuPosition]):
         try:
@@ -21,6 +21,3 @@ while 0 <= menuPosition < 3:
 calcOption, signatureOption = notesFunctions.optionSelection(user_selections)
 print(calcOption)
 print(signatureOption)
-
-
-
