@@ -87,3 +87,30 @@ def calcM01():
     noteM01 = noteUF1 * PERCENTUF1 + noteUF2 * PERCENTUF2 #+ noteUF3 * PERCENTUF3 + noteUF4 * PERCENTUF4
 
     return noteM01, lessnote
+def calcUF1M03():
+    PERCENTPR1 = 0.05
+    PERCENTPR2 = 0.1
+    PERCENTPE1 = 0.4
+    PERCENTPP1 = 0.45
+    PERCENTPR3 = 0.1
+    PERCENTPR4 = 0.1
+    PERCENTPP2 = 0.3
+    PERCENTPR5 = 0.1
+    PERCENTPP3 = 0.4
+    NRA1PRACTISES = 4
+    NRA2PRACTISES = 5
+    TOTALPRACTISES = NRA1PRACTISES + NRA2PRACTISES
+
+    PPLIST = ('PR1', 'PR2', 'PE1', 'PP1', 'PR3', 'PR4', 'PP2', 'PR5', 'PP3')
+    PERCENTLIST = (PERCENTPR1, PERCENTPR2, PERCENTPE1, PERCENTPP1, PERCENTPR3, PERCENTPR4, PERCENTPP2, PERCENTPR5, PERCENTPP3)
+    notes = []
+
+    for pp, percent in zip(PPLIST, PERCENTLIST):
+        ppnote = float(input(f'Nota {pp} : '))
+        notes.append(ppnote * percent)
+
+    RA1 = sum(notes[0:NRA1PRACTISES]) * 0.1
+    RA2 = sum(notes[NRA1PRACTISES:TOTALPRACTISES]) * 0.9
+
+    noteUF1 = round(RA1 + RA2, 2)
+    return noteUF1
