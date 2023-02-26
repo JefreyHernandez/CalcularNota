@@ -5,7 +5,7 @@ import menus
 import sys
 def optionSelection(userInputList):
     calculateName = menus.calculateMenu[userInputList[1] - 1]
-    signatureName = menus.signaturas[userInputList[2] - 1]
+    signatureName = list(menus.signaturas.keys())[userInputList[2] - 1]
     return calculateName, signatureName
 def printPermitedNotes():
     print('El resultado no esta entre las notas permitidas [0 - 10]')
