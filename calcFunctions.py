@@ -1,12 +1,12 @@
 import notesFunctions as nF
 import sys
 def insertCustomNotes(ppslist, percentages):
+    notes = []
     for pp, percent in zip(ppslist, percentages):
-        notes = []
         try:
             ppnote = float(input(f'Nota {pp} : '))
             if 0 <= ppnote <= 10:
-                notes.append(ppnote)
+                notes.append(ppnote * percent)
             else:
                 nF.printPermitedNotes()
                 sys.exit(1)
@@ -18,7 +18,7 @@ def insertCustomNotes(ppslist, percentages):
                 divident = int(ppnote[1])
                 ppnote = divisor / divident * 10
                 if 0 <= ppnote <= 10:
-                    notes.append(ppnote)
+                    notes.append(ppnote * percent)
                 else:
                     nF.printPermitedNotes()
                     sys.exit(1)
