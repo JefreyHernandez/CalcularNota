@@ -1,4 +1,31 @@
 import notesFunctions as nF
+import sys
+def insertCustomNotes(ppslist, percentages):
+    for pp, percent in zip(ppslist, percentages):
+        notes = []
+        try:
+            ppnote = float(input(f'Nota {pp} : '))
+            if 0 <= ppnote <= 10:
+                notes.append(ppnote)
+            else:
+                nF.printPermitedNotes()
+                sys.exit(1)
+        except ValueError as ppnotetype2:
+            try:
+                ppnote = str(ppnotetype2).split("'")
+                ppnote = ppnote[1].split('/')
+                divisor = int(ppnote[0])
+                divident = int(ppnote[1])
+                ppnote = divisor / divident * 10
+                if 0 <= ppnote <= 10:
+                    notes.append(ppnote)
+                else:
+                    nF.printPermitedNotes()
+                    sys.exit(1)
+            except:
+                sys.exit(1)
+    return notes
+
 def calcUF1M01():
     NRA1PRACTISES = 5
     NRA2PRACTISES = 2
@@ -29,7 +56,7 @@ def calcUF1M01():
     lessnote = lessnotepp or lessnotetest
 
     return total, lessnote
-def calcUF2M01():
+def calcUF2M01(): # TODO arreglar formula alltest
     NRA1PRACTISES = 5
     NRA2PRACTISES = 2
     NRA3PRACTISES = 3
@@ -86,8 +113,8 @@ def calcM01():
 
     noteM01 = noteUF1 * PERCENTUF1 + noteUF2 * PERCENTUF2 #+ noteUF3 * PERCENTUF3 + noteUF4 * PERCENTUF4
 
-    return noteM01, lessnote
-def calcUF1M03():
+    return noteM01, lessnote #
+def calcUF1M03(): # TODO lessnotes
     PERCENTPR1 = 0.05
     PERCENTPR2 = 0.1
     PERCENTPE1 = 0.4
@@ -103,14 +130,68 @@ def calcUF1M03():
 
     PPLIST = ('PR1', 'PR2', 'PE1', 'PP1', 'PR3', 'PR4', 'PP2', 'PR5', 'PP3')
     PERCENTLIST = (PERCENTPR1, PERCENTPR2, PERCENTPE1, PERCENTPP1, PERCENTPR3, PERCENTPR4, PERCENTPP2, PERCENTPR5, PERCENTPP3)
-    notes = []
 
-    for pp, percent in zip(PPLIST, PERCENTLIST):
-        ppnote = float(input(f'Nota {pp} : '))
-        notes.append(ppnote * percent)
+    notes = insertCustomNotes(PPLIST, PERCENTLIST)
 
     RA1 = sum(notes[0:NRA1PRACTISES]) * 0.1
     RA2 = sum(notes[NRA1PRACTISES:TOTALPRACTISES]) * 0.9
-
     noteUF1 = round(RA1 + RA2, 2)
     return noteUF1
+def calcUF2M03():
+    PERCENTPT11 = 0.15
+    PERCENTPT12 = 0.15
+    PERCENTPP1 = 0.7
+
+    PPLIST = ('PT1.1', 'PT1.2', 'PP1')
+    PERCENTAGES = (PERCENTPT11, PERCENTPT12, PERCENTPP1)
+
+    notes = insertCustomNotes(PPLIST, PERCENTAGES)
+
+    RA1 = sum(notes)
+    noteUF2 = round(RA1, 2)
+
+    return noteUF2
+
+def calcUF1M07():
+    PERCENTX101 = 0.0294
+    PERCENTX110 = 0.0294
+    PERCENTX111 = 0.0294
+    PERCENTX112 = 0.0294
+    PERCENTX121 = 0.0588
+    PERCENTX122 = 0.0588
+    PERCENTX129T = 0.0882
+    PERCENTX129O = 0.0882
+    PERCENTX131 = 0.0294
+    PERCENTX132 = 0.1618
+    PERCENTX141 = 0.0588
+    PERCENTX151 = 0.0294
+    PERCENTX152 = 0.0588
+    PERCENTX153 = 0.0294
+    PERCENTX156 = 0.0588
+    PERCENTX160 = 0.1618
+
+    PPLIST = ('X101', 'X110', 'X111', 'X112', 'X121', 'X122', 'X129-TCP/IP', 'X129-OSI','X131', 'X132', 'X141', 'X151', 'X152', 'X153','X156', 'X160')
+    PERCENTAGES = (PERCENTX101, PERCENTX110, PERCENTX111, PERCENTX112, PERCENTX121, PERCENTX122, PERCENTX129T,
+                   PERCENTX129O, PERCENTX131, PERCENTX132, PERCENTX141, PERCENTX151, PERCENTX152, PERCENTX153,PERCENTX156, PERCENTX160)
+
+    notes = insertCustomNotes(PPLIST, PERCENTAGES)
+
+    total = round(sum(notes), 2)
+    return total
+
+def calcUF2M07():
+    PERCENTX202 = 0.1905
+    PERCENTX203 = 0.0476
+    PERCENTX204 = 0.1905
+    PERCENTX205 = 0.2381
+    PERCENTX205C = 0.0476
+    PERCENTX206 = 0.2381
+    PERCENTX206C = 0.0476
+
+    PPLIST = ('X202', 'X203', 'X204', 'X205', 'X205-C', 'X206', 'X206-C')
+    PERCENTAGES = (PERCENTX202, PERCENTX203, PERCENTX204, PERCENTX205, PERCENTX205C, PERCENTX206, PERCENTX206C)
+
+    notes = insertCustomNotes(PPLIST, PERCENTAGES)
+
+    total = round(sum(notes), 2)
+    return total
