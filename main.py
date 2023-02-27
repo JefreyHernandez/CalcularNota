@@ -1,6 +1,6 @@
 import sys
 import menuFunctions as mF
-import notesFunctions
+import notesFunctions as nF
 import calcFunctions as cF
 import menus
 
@@ -20,7 +20,7 @@ try:
             menuPosition += 1
 
 
-    calcOption, signatureOption = notesFunctions.optionSelection(user_selections)
+    calcOption, signatureOption = nF.optionSelection(user_selections)
 
     match user_selections[2]:
         case 1:
@@ -34,20 +34,36 @@ try:
                         nota, lessnote = cF.calcUF1M01()
                         print(f'\nNota UF1 M01 : {nota}')
                         if lessnote:
-                            print('La nota puede ser inferior ya que alguna nota es inferior a la mínima')
+                            nF.printLessnote()
                     case 2:
                         nota, lessnote = cF.calcUF2M01()
                         print(f'\nNota UF2 M01 : {nota}')
                         if lessnote:
-                            print('La nota puede ser inferior ya que alguna nota es inferior a la mínima')
+                            nF.printLessnote()
                     case 3:
                         pass
                     case 4:
                         pass
+                    case _:
+                        nF.printPermitedUFs()
         case 2:
             pass
         case 3:
-            pass
+            if user_selections[1] == 1:
+                pass
+            elif user_selections[1] == 2:
+                mF.spawnUFMenu(signatureOption)
+                selectedUF = int(input(f"\nOpción? : "))
+                match selectedUF:
+                    case 1:
+                        nota, lessnote = cF.calcUF1M03()
+                        print(f'\nNota UF1 M03 : {nota}')
+                        if lessnote:
+                            nF.printLessnote()
+                    case 2:
+                        pass
+                    case 3:
+                        pass
         case 4:
             pass
         case 5:
@@ -55,7 +71,20 @@ try:
         case 6:
             pass
         case 7:
-            pass
+            if user_selections[1] == 1:
+                pass
+            elif user_selections[1] == 2:
+                mF.spawnUFMenu(signatureOption)
+                selectedUF = int(input(f"\nOpción? : "))
+                match selectedUF:
+                    case 1:
+                        nota = cF.calcUF1M07()
+                        print(f'Nota UF1 M07 : {nota}')
+                    case 2:
+                        nota = cF.calcUF2M07()
+                        print(f'Nota UF2 M07 : {nota}')
+                    case 3:
+                        pass
         case 8:
             pass
         case 9:
