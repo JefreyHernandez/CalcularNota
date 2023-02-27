@@ -9,6 +9,11 @@ def optionSelection(userInputList):
     return calculateName, signatureName
 def printPermitedNotes():
     print('El resultado no esta entre las notas permitidas [0 - 10]')
+def printPermitedUFs():
+    print('Has seleccionado una UF no existente.')
+    sys.exit(1)
+def printLessnote():
+    print('La nota puede ser inferior ya que alguna nota es inferior a la mínima')
 def getUFNotes(NUFS):
     UFNotesList = []
     for UF in range(NUFS):
