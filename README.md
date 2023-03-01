@@ -7,6 +7,7 @@ Este proyecto calcula las notas de UF, Módulo o el Total de ASIXc, en concreto 
 ``` git
    git clone https://github.com/JefreyHernandez/CalcularNota.git
    cd CalcularNota
+   chmod +x ./*
    python3 ./main.py
 ```
 
