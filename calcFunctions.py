@@ -61,7 +61,7 @@ def calcUF2M01(): # TODO arreglar formula alltest
     NRA2PRACTISES = 2
     NRA3PRACTISES = 3
     TOTALPRACTISES = NRA1PRACTISES + NRA2PRACTISES + NRA3PRACTISES
-    NTEST = 2
+    NTEST = 3
     PERCENTPPRA1 = 0.1
     PERCENTPPRA2 = 0.25
     PERCENTPPRA3 = 0.17
@@ -77,18 +77,22 @@ def calcUF2M01(): # TODO arreglar formula alltest
     notesRA3 = [pp * PERCENTPPRA3 for pp in allpps[NRA1PRACTISES + NRA2PRACTISES:TOTALPRACTISES]]
 
     alltest = nF.insertTEST(NTEST)
-    mediaTests = sum(alltest) / len(alltest)
+
+    test1 = alltest[0]
+    test2 = alltest[1]
+    test3 = alltest[2]
 
     lessnotetest = nF.detectLessnote(alltest, MINNOTETEST)
 
-    RA1 = ((sum(notesRA1) * 0.5) + (mediaTests * 0.5)) * 0.4
-    RA2 = ((sum(notesRA2) * 0.5) + (mediaTests * 0.5)) * 0.3
-    RA3 = ((sum(notesRA3) * 0.5) + (mediaTests * 0.5)) * 0.3
+    RA1 = ((sum(notesRA1) * 0.5) + (test1 * 0.5)) * 0.4
+    RA2 = ((sum(notesRA2) * 0.5) + (test2 * 0.5)) * 0.3
+    RA3 = ((sum(notesRA3) * 0.5) + (test3 * 0.5)) * 0.3
 
     total = round(RA1 + RA2 + RA3, 2)
+    print(f"Nota amb RA1 i RA2 : {round(RA1 + RA2, 2)}")
     lessnote = lessnotepp or lessnotetest
-
     return total, lessnote
+
 def calcM01():
     PERCENTUF1 = 0.3
     PERCENTUF2 = 0.4
